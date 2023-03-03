@@ -1,0 +1,3 @@
+rootProject.name = 'ClientServer'
+include ':ShareObject'
+project(':ShareObject').projectDir = new File(settingsDir, '../ShareObject')

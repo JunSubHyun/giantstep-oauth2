@@ -1,0 +1,10 @@
+# Project exclude paths
+/ClientServer/.gradle/
+/ClientServer/build/
+/ClientServer/build/classes/java/main/
+/ResourceServer/.gradle/
+/ResourceServer/build/
+/ResourceServer/build/classes/java/main/
+/ShareObject/.gradle/
+/ShareObject/build/
+/ShareObject/build/classes/java/main/
