@@ -39,15 +39,14 @@ public class RestApiController {
 
     @GetMapping("/token")
     public OAuth2AccessToken token(@RegisteredOAuth2AuthorizedClient("springOAuth2") OAuth2AuthorizedClient oAuth2AuthorizedClient){
-        System.out.println("/////////////////////////////////////////////");
         return oAuth2AuthorizedClient.getAccessToken();
     }
 
     @GetMapping("/tokenExpire")
-    public Map<String,Object> tokenExpire(AccessToken accessToken){
+    public Map<String,Object> tokenExpire(AccessToken token){
 
         HttpHeaders header = new HttpHeaders();
-        header.add("Authorization", "Bearer " + accessToken.getToken());
+        header.add("Authorization", "Bearer " + token.getToken());
         HttpEntity<?> entity = new HttpEntity<>(header);
         String url = "http://localhost:8082/tokenExpire";
         ResponseEntity<Map<String,Object>> response = restTemplate.exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<>() {});

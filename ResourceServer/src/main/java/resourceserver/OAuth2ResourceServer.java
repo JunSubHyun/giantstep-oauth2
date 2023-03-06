@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.client.RestTemplate;
@@ -16,12 +17,12 @@ public class OAuth2ResourceServer {
 
     @Bean
     SecurityFilterChain securityFilterChain1(HttpSecurity http) throws Exception {
-
         http.authorizeRequests(
                 (requests) -> requests
                         .antMatchers("/photos","/remotePhotos","/myInfo").access("hasAuthority('SCOPE_photo')")
                         .anyRequest().authenticated());
-//        http.oauth2ResourceServer().jwt();
+        OAuth2ResourceServerConfigurer<HttpSecurity>.JwtConfigurer jwt = http.oauth2ResourceServer().jwt();
+        System.out.println("jwt  :"+jwt);
         http.cors().configurationSource(corsConfigurationSource());
         return http.build();
     }

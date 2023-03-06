@@ -8,7 +8,7 @@
     <title>Insert title here</title>
     <script>
         function photos() {
-            fetch("http://localhost:8082/photos", {
+            fetch("http://127.0.0.1:8082/photos", {
                 method: "GET",
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("access_token")
@@ -16,11 +16,13 @@
             })
                 .then(response => {
                     response.json().then(function (data) {
+                        console.log(data)
                         for (const prop in data) {
-                            document.querySelector("#remotePhotos").append(data[prop].userId);
-                            document.querySelector("#remotePhotos").append(data[prop].photoId);
-                            document.querySelector("#remotePhotos").append(data[prop].photoTitle);
-                            document.querySelector("#remotePhotos").append(data[prop].photoDescription);
+                            console.log(data[prop]);
+                            document.querySelector("#remotePhotos").append(data[prop]);
+                            document.querySelector("#remotePhotos").append(data[prop]);
+                            document.querySelector("#remotePhotos").append(data[prop]);
+                            document.querySelector("#remotePhotos").append(data[prop]);
                             document.querySelector("#remotePhotos").append(document.createElement('br'));
                         }
                     })
@@ -29,7 +31,7 @@
 
 
         function myInfo() {
-            fetch("http://localhost:8082/myInfo", {
+            fetch("http://127.0.0.1:8082/myInfo", {
                 method: "GET",
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("access_token")
