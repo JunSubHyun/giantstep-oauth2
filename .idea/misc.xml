@@ -4,6 +4,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/authorizationServer" />
     <file type="web" url="file://$PROJECT_DIR$/ClientServer" />
+    <file type="web" url="file://$PROJECT_DIR$/DauResourceServer" />
     <file type="web" url="file://$PROJECT_DIR$/ResourceServer" />
     <file type="web" url="file://$PROJECT_DIR$/SharedObject" />
     <file type="web" url="file://$PROJECT_DIR$/ShareObject" />

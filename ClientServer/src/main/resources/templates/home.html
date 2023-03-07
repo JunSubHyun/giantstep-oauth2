@@ -8,7 +8,7 @@
     <title>Insert title here</title>
     <script>
         function photos() {
-            fetch("http://127.0.0.1:8082/photos", {
+            fetch("http://127.0.0.1:8082/userDetail", {
                 method: "GET",
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("access_token")
@@ -16,15 +16,23 @@
             })
                 .then(response => {
                     response.json().then(function (data) {
-                        console.log(data)
-                        for (const prop in data) {
-                            console.log(data[prop]);
-                            document.querySelector("#remotePhotos").append(data[prop]);
-                            document.querySelector("#remotePhotos").append(data[prop]);
-                            document.querySelector("#remotePhotos").append(data[prop]);
-                            document.querySelector("#remotePhotos").append(data[prop]);
-                            document.querySelector("#remotePhotos").append(document.createElement('br'));
-                        }
+                        console.log(data);
+                        document.querySelector("#remotePhotos").append("아이디 :" + data.username);
+                        document.querySelector("#remotePhotos").append(document.createElement('br'));
+                        document.querySelector("#remotePhotos").append("이름 :" + data.name);
+                        document.querySelector("#remotePhotos").append(document.createElement('br'));
+                        document.querySelector("#remotePhotos").append("직급 :" + data.koName);
+                        document.querySelector("#remotePhotos").append(document.createElement('br'));
+                        document.querySelector("#remotePhotos").append("사원 번호 :" + data.employeeNumber);
+                        document.querySelector("#remotePhotos").append(document.createElement('br'));
+                        // for (const prop in data) {
+                        //     console.log(data[prop]);
+                        //     document.querySelector("#remotePhotos").append(data[prop]);
+                        //     document.querySelector("#remotePhotos").append(data[prop]);
+                        //     document.querySelector("#remotePhotos").append(data[prop]);
+                        //     document.querySelector("#remotePhotos").append(data[prop]);
+                        //     document.querySelector("#remotePhotos").append(document.createElement('br'));
+                        // }
                     })
                 })
         }
@@ -96,7 +104,7 @@
 <div>Welcome</div>
 <div sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></div>
 <form action="#">
-    <p><input type="button" onclick="photos()" value="Photos"/>
+    <p><input type="button" onclick="photos()" value="상세 회원 정보"/>
     <p><input type="button" onclick="myInfo()" value="MyInfo"/>
     <p><input type="button" onclick="tokenExpire()" value="tokenExpire"/>
 </form>
