@@ -98,6 +98,10 @@
                 .catch((error) => console.log("error:", error));
         }
 
+        function join(){
+          location.href = "/join";
+        }
+
     </script>
 </head>
 <body>
@@ -105,6 +109,7 @@
 <div sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></div>
 <form action="#">
     <p><input type="button" onclick="photos()" value="상세 회원 정보"/>
+    <p><input type="button" onclick="join()" value="회원 가입"/>
     <p><input type="button" onclick="myInfo()" value="MyInfo"/>
     <p><input type="button" onclick="tokenExpire()" value="tokenExpire"/>
 </form>

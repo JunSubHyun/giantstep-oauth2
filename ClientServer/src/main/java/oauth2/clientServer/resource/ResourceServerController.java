@@ -3,6 +3,8 @@ package oauth2.clientServer.resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import shareObject.AccessToken;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RestController
@@ -34,6 +38,21 @@ public class ResourceServerController {
         System.out.println("responseData  ::" + responseData);
 
         return responseData;
+    }
+
+    @PostMapping("/join")
+    public Map<String,Object> join(UserRequest userRequest, HttpServletRequest httpServletRequest){
+
+        String token = httpServletRequest.getHeader("access_token");
+
+        System.out.println("token :::: "+ token);
+        HttpHeaders header = new HttpHeaders();
+        header.add("Authorization", "Bearer " + token);
+        HttpEntity<?> entity = new HttpEntity<>(header);
+        String url = "http://localhost:8082/tokenExpire";
+        ResponseEntity<Map<String,Object>> response = restTemplate.exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<>() {});
+
+        return response.getBody();
     }
 
 

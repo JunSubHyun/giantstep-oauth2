@@ -15,5 +15,8 @@ public class UserService {
         return new UserResponse(user);
     }
 
+    public Long save(UserRequest userRequest){
+        return userRepository.save(userRequest.toEntity()).getId();
+    }
 
 }

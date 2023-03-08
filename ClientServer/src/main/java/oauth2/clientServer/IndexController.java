@@ -15,4 +15,9 @@ public class IndexController {
     public String home(){
         return "home";
     }
+
+    @GetMapping("/join")
+    public String join(){
+        return "join";
+    }
 }
